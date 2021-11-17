@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Job status</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    .console-panel {
+      margin-top: 100px;
+    }
+
+    .status-page {
+      max-width: 900px;
+    }
+
+    .live-panel {
+      padding: 1.5rem;
+      margin-right: 0;
+      margin-left: 0;
+      border-width: 0.2rem;
+    }
+
+    .status-info {
+      display: none;
+    }
+
+    .download-page {
+      display: none;
+    }
+  </style>
+
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-normal">OSUM</h5>
+    </div>
+    <div class="container status-page">
+      <div class="live-panel border">
+        <h4 class="text-center">Live Status</h4>
+        <div class="row mt-5">
+          <div class="col-4 text-center border-bottom">
+            <h6>Step</h6>
+          </div>
+          <div class="col-4 text-center border-bottom">
+            <h6>Status</h6>
+          </div>
+          <div class="col-4 text-center border-bottom">
+            <h6>Percentage</h6>
+          </div>
+        </div>
+        <div class="status-loader text-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <div class="row mt-5 status-info">
+          <div class="col-4 text-center current-step">
+            <b></b>
+          </div>
+          <div class="col-4 text-center current-status">
+            <b></b>
+          </div>
+          <div class="col-4 text-center current-percentage">
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar"
+                aria-valuenow="0"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width: 0%"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="console-panel">
+        <h4>Console</h4>
+        <div class="row">
+          <div class="col-sm">
+            <div class="console-wrapper"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container download-page text-center">
+      <h4 class="text-center">You can download the rendered videos to click below links</h4>
+      <div class="row mt-5">
+        <div class="col-3 text-center border-bottom">
+          <h6>Profile</h6>
+        </div>
+        <div class="col-9 text-center border-bottom">
+          <h6>Link</h6>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function getUrlParameter(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    const jobId = getUrlParameter('jobId');
+    var currentStatus = {};
+    const themes = {
+      completed: 'success',
+      in_progress: 'info',
+      failed: 'danger',
+      delete: 'dark'
+    };
+    const profiles = ['landscape', 'portrait', 'square'];
+
+    setInterval(getStatus, 1000);
+
+    function getStatus() {
+      if (currentStatus.step == 'completed' && currentStatus.status == 'completed') return;
+
+      fetch(`/v1/api/status/${jobId}`)
+        .then(res => res.json())
+        .then(out => {
+          if (JSON.stringify(currentStatus) == JSON.stringify(out)) return;
+          currentStatus = Object.assign({}, out);
+          if (currentStatus.step == 'completed' && currentStatus.status == 'completed') {
+            $('.status-page').css('display', 'none');
+            $('.download-page').css('display', 'block');
+            for (const profile of profiles) {
+              const file = currentStatus.files.find(file => file[profile]);
+              if (file) {
+                $('.download-page').append(`
+                <div class="row mt-1">
+                  <div class="col-3 text-center">
+                    ${profile}
+                  </div>
+                  <div class="col-9 text-center">
+                    <a target="_blank" href="${file[profile]}" class="text-decoration-none" download>${file[profile]}</a>
+                  </div>
+                </div>
+              `);
+              }
+            }
+          } else {
+            $('.status-info').css('display', 'flex');
+            $('.status-loader').css('display', 'none');
+            $('.console-wrapper').append(
+              `<samp class="p-0 console text-${themes[currentStatus.status]}">${JSON.stringify(out)}</samp>`
+            );
+            $('.current-step b')
+              .html(currentStatus.step)
+              .attr('class', `text-${themes[currentStatus.status]}`);
+            $('.current-status b')
+              .html(currentStatus.status)
+              .attr('class', `text-${themes[currentStatus.status]}`);
+            $('.current-percentage .progress-bar').css('width', `${currentStatus.percentage}%`);
+          }
+        })
+        .catch(err => console.error(err));
+    }
+  </script>
+</html>

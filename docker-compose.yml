@@ -1,0 +1,47 @@
+version: '2'
+
+services:
+  #  osum_gentle:
+  #    restart: on-failure
+  #    container_name: 'osum_gentle'
+  #    image: lowerquality/gentle
+  #    ports:
+  #      - 8765:8765
+
+  osum_vosk:
+    container_name: 'osum_vosk'
+    image: alphacep/kaldi-en:latest
+    environment:
+      VOSK_SAMPLE_RATE: 16000
+      #      VOSK_SAMPLE_RATE: 8000
+    ports:
+      - 2700:2700
+
+  osum_thumbor:
+    restart: on-failure
+    container_name: 'osum_thumbor'
+    image: apsl/thumbor:latest
+    ports:
+      - 8888:8000
+
+    environment:
+      - DETECTORS=['thumbor.detectors.face_detector','thumbor.detectors.feature_detector']
+      - HTTP_LOADER_CONNECT_TIMEOUT=100
+      - HTTP_LOADER_REQUEST_TIMEOUT=100
+
+  osum_db:
+    image: mysql:5.7
+    #    command: --default-authentication-plugin=mysql_native_password
+    container_name: 'osum_db'
+    volumes:
+      - ./docker/data/mysql:/var/lib/mysql
+      - ./docker/db_init:/docker-entrypoint-initdb.d
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+    ports:
+      - 3306:3306

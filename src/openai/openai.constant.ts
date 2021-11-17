@@ -1,0 +1,17 @@
+export const OPENAI_API_URL = 'https://api.openai.com/v1/engines/davinci/completions';
+export const OPENAI_CONFIG_MODEL = 'davinci';
+export const OPENAI_CONFIG_TEMPERATURE = 0;
+export const OPENAI_CONFIG_STOP = '\n';
+export const OPENAI_CONFIG_CONTENT_TYPE = 'application/json';
+export const OPENAI_NO_KEYWORDS_ERROR = 'OpenAI has not chosen any keyword :(';
+export const OPENAI_NO_VIDEOS_FOUND = 'No videos found!';
+export const OPENAI_NO_IMAGES_FOUND = 'No images found!';
+export const OPENAI_KEYWORDS_ANSWER_SEPARATOR = 'A: ';
+export const OPENAI_CHOSEN_CONTENT_ANSWER_SEPARATOR = 'A: Sentence ';
+export const OPENAI_MIN_RESULTS_VIDUX = 1;
+export const OPENAI_MIN_RESULTS_SHUTTERSTOCK = 4;
+export const OPENAI_FALLBACK_KEYWORD = 'diet';
+export const OPENAI_FALLBACK_DURATION = 5;
+export const OPENAI_DEFAULT_IMAGE_ASSET_PROP = 'preview_1500';
+export const OPENAI_DEFAULT_VIDEO_ASSET_PROP = 'preview_mp4';
+export const OPENAI_MAX_RESULTS_CONTENT = 20;

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "osum-staging-281014",
+  "private_key_id": "95179ae6306818d9974393e891ecf1acb1ae9a82",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDFY9jamIxwMvQY\nhvL3P35mTc8Hq/UwEmsFm3rUgWZLahZUzlZ3fzPr4Pj7+tKGSjyzciW5wQ44KZHF\nz/upfip1JVJU7iioLJeCz9G2bnXh3n2/fs0Axu4ocO2O70jQ7M3uOphI38qTUA6m\nVtiyeoYC/0Q3RbKIi3FKnXLOJO9Nd1oi7LSDOBE5Bf94aJo3qglB1Sjs8aLLjAR+\n7QBv2lo/E3Xro3K3E70g+ySvZSl2iF3cFwvtDGqej7DaAmMfdYI+85ub+QzrkGn0\nLgozzDn2PgCNYYnRRo74b4Ubng82H8rGPcSYknnA7ftgMz1F1LE2Oguz8f80F5UV\ndT6lOyiTAgMBAAECggEAAd6WHuZJ+J53uStYbfOmfutZ77cqHWuKb77b7qfpFmn2\ngZTqTohtLymhNUKLYuU25o/JGeJhTMvfMXhTG46/C5jJl+9UTqXZeE4ykyxzP/fk\n/GU3JaMJfc2QANLbjDFp9xZYyEi1hcHac0RB5vLWuRZYCMDHiTG7TKfpsfHsm32z\nhqIgsfz/1UwR9z4rzRjLhbaefMhYoRpSaz+fMd045x5St9iRsWBGnyWj1guLxE2T\ndp5X4/y/7FSl5otky6axhUHwUTPdQONP+a0q9DbT47k4qewoptPJ0su9Yy0ka4u2\nG6NddvGC1omRADATu5J41HsV7MHGKn3ZOEyHx58S/QKBgQDuPjmYHP9rpvNALlGb\nKGNfwDeIzljZEsj3BRd2QNddXxu0m+ZZLN3a+3+C2EhkrBI/MWWMfMp1guC90MkG\nZWJCAQZ1s7fS4NunfsTpS6+m61rlbrthC8iVehYlcZThPsOeAtkufC58EXsxeN3X\nNPS3x8cgyzkG0Ziz0tj6bU+RfwKBgQDUGiEjMqs2izmyVWAadXA6Wdb0Nv/PWhYb\nzLeexSHE7nmTS9NliJLZBaiYRyNHwsW77nQ/QCabyEJXd7fsPJMzZOCUQix/zgJl\nQJnTK23Ss6bvwSPhggrChaoYOS5CWHnjszyJnEwo44mUrUWC6o65JuJwO4pa+LMM\nbD7wzV2K7QKBgQDrxWbH88KObd0DIhOeojyd8KLE37irslxxoXdTjt3TSKEpfrNa\ngv1XjlblTVdvUZ6JLUBa5NCTtJ7nGm0myESSH2OeLen4ZpDaVKlYW4+MeBQvRANq\nCfhKfVTXX20/8BY1FIqL51c1bzNkhUG9jWm1Sp71BEj+R4SASWRziKQazwKBgQDE\nKop9aE5ruuaY5ldlATrT7OVep0N+vh32hidJg59Q6RKuRZH1tRPD/nTIqfqaUyzY\nPJltKmLK77NT/Fix9/BYtzLyTCWl6p3SkaXzZZZEKn35/pK17bUP5dnEX5ZGLFhH\nXS1fRJw3sQI87Oh+RXvNCIajMJ4stxm6Ip8vzXB3nQKBgQDjoLftuMz+805aWPJS\n7j5524DXpbGvDqcPgTHGi/5N2OBmyaccGcregNpt66kbcPmsxpS+yghka93Eq1rR\nyN8JGNCsGG0yHQ9l3ZZGzguXhaCBVNT2wriUmt8+D6EqW4vshAQn8lc7QKnAf+xU\nW05fUjZoMWr5SAa08AZeg2squQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "cesar-rdz@osum-staging-281014.iam.gserviceaccount.com",
+  "client_id": "105350149868098674289",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cesar-rdz%40osum-staging-281014.iam.gserviceaccount.com"
+}
